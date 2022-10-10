@@ -4,9 +4,17 @@
   background-color: var(--color-grey-8);
 }
 
-#button-dark-theme svg {
+body.dark #button-dark-theme {
+  background-color: var(--color-grey-1);
+}
+
+#button-dark-theme i {
   color: var(--color-grey-1);
   background-color: none;
+}
+
+body.dark #button-dark-theme i {
+  color: var(--color-grey-3);
 }
 
 .buttons-default {

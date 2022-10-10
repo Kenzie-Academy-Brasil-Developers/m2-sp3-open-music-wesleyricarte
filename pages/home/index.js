@@ -68,12 +68,12 @@ function createPriceRange() {
   sectionPriceRange.append(divTitlePriceRange, inputTypeRange);
   divTitlePriceRange.append(h3DefinePrice, h3MaxPrice);
 
-  createSectionAlbums();
+  createSectionAlbums(inputTypeRange);
 
   return sectionPriceRange;
 }
 
-function createSectionAlbums() {
+function createSectionAlbums(inputTypeRange) {
   const sectionAlbums = document.createElement("section");
   const divTitleSectionAlbums = document.createElement("div");
   const h3TitleSectionAlbums = document.createElement("h3");
@@ -92,8 +92,10 @@ function createSectionAlbums() {
 
   // let gen = 0;
   // createCardsAlbums(products, mainArticles);
-  buttonsListenner(products, mainArticles);
-  separateByGendder(products, mainArticles, 3);
+  // buttonsListenner(products, mainArticles);
+  // separateByGendder(products, mainArticles);
+
+  buttonsListenner(products, mainArticles, inputTypeRange);
 
   return sectionAlbums;
 }
@@ -152,31 +154,37 @@ function createCardsAlbums(data, toAppendHere) {
   });
 }
 
-function buttonsListenner(products, mainArticles) {
-  let gen = 0;
-
-  categories.forEach((element) => {
-    let actualGen = element;
-    let button = document.querySelector(`.button-${actualGen}`);
-    console.log(button);
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      separateByGendder(products, mainArticles, gen, actualGen);
-      console.log("click");
+function buttonsListenner(products, mainArticles, inputTypeRange) {
+  const buttonsGender1 = document.querySelectorAll(".buttons-gender");
+  let gender = "Todos";
+  mainArticles.innerHTML = "";
+  createCardsAlbums(products, mainArticles);
+  buttonsGender1.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      gender = btn.innerText;
+      // console.log(gender);
+      if (gender === "Todos") {
+        mainArticles.innerHTML = "";
+        createCardsAlbums(products, mainArticles);
+        // console.log("botão todos clicado");
+      } else {
+        separateByGendder(products, mainArticles, gender, inputTypeRange);
+      }
     });
   });
-  // console.log(gen);
-  // console.log(actualGen);
 }
 
-function separateByGendder(products, mainArticles, gen, actualGen) {
-  console.log(categories[gen]);
-  genNumber = categories.indexOf(categories[gen]);
-  console.log(genNumber);
-  // console.log(gen)
-  // console.log(products);
-  let filtered = products.filter((element) => element.category === gen);
+function separateByGendder(products, mainArticles, gender, inputTypeRange) {
+  let genNumber = categories.findIndex((element) => element === gender);
+  // console.log(genNumber);
+  let filtered = products.filter((element) => element.category === genNumber);
   mainArticles.innerHTML = "";
   createCardsAlbums(filtered, mainArticles);
+  // separateByPrice(products, mainArticles, inputTypeRange)
   // console.log(filtered);
 }
+
+// function separateByPrice (products, mainArticles, inputTypeRange) {
+//   let priceRange = inputTypeRange.target
+//   console.log(priceRange)
+// }
