@@ -1,0 +1,66 @@
+.section-albums {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.main-articles {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ gap: 2rem;
+}
+
+.div-title-section-albums {
+  display: flex;
+}
+
+.div-title-section-albums h3{
+ padding-bottom: 3.75rem;
+}
+
+.article-album {
+  background-color: var(--color-grey-8);
+  display: flex;
+  flex-direction: column;
+  width: 308px;
+  height: 259px;
+  border-radius: 4px;
+}
+
+body.dark .article-album {
+ background-color: var(--color-grey-1);
+}
+
+.div-img {
+  display: flex;
+  width: 308px;
+  height: 113px;
+}
+
+.div-img img {
+  width: 100%;
+  height: 113px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.div-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  height: 146px;
+  padding: 1rem;
+}
+
+.div-info-artist-year {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.div-info-price-buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
